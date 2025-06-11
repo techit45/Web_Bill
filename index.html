@@ -329,6 +329,15 @@
 
             <div class="success-message" id="successMessage">
                 <strong>✅ สำเร็จ!</strong> ข้อมูลเบิกจ่ายถูกส่งเรียบร้อยแล้ว
+                <div id="pdfLinkContainer" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #c3e6cb;">
+                    <strong>📄 ไฟล์ PDF ของคุณ:</strong><br>
+                    <a id="pdfLink" href="#" target="_blank" style="color: #155724; text-decoration: underline; font-weight: 500;">
+                        🔗 คลิกเพื่อดาวน์โหลด/ดู PDF
+                    </a>
+                    <br><small style="color: #6c757d; margin-top: 5px; display: block;">
+                        (จะเปิดใน Google Drive ในแท็บใหม่)
+                    </small>
+                </div>
             </div>
 
             <div class="error-message" id="errorMessage">
@@ -380,6 +389,7 @@
             // ซ่อนข้อความเก่า
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
+            document.getElementById('pdfLinkContainer').style.display = 'none';
             
             // แสดง loading
             submitBtn.style.display = 'none';
@@ -393,7 +403,23 @@
                 
                 if (response.ok) {
                     const result = await response.json();
+                    
+                    // แสดงข้อความสำเร็จ
                     successMessage.style.display = 'block';
+                    
+                    // ตรวจสอบว่ามี PDF URL หรือไม่
+                    if (result.pdf_url) {
+                        const pdfLinkContainer = document.getElementById('pdfLinkContainer');
+                        const pdfLink = document.getElementById('pdfLink');
+                        
+                        pdfLink.href = result.pdf_url;
+                        pdfLink.textContent = `🔗 ดูไฟล์ PDF: บิลเบิก_${result.requester || 'สำเร็จ'}`;
+                        pdfLinkContainer.style.display = 'block';
+                        
+                        console.log('PDF URL:', result.pdf_url);
+                    }
+                    
+                    // รีเซ็ตฟอร์ม
                     form.reset();
                     document.getElementById('filePreview').style.display = 'none';
                     
