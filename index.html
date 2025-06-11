@@ -339,7 +339,7 @@
 
     <script>
         // *** ตั้งค่า Webhook URL ของ n8n ตรงนี้ ***
-        const WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE';
+        const WEBHOOK_URL = 'https://a20d-184-22-102-215.ngrok-free.app/webhook/expense-form';
         
         // จัดการการแสดงตัวอย่างไฟล์
         document.getElementById('imageFile').addEventListener('change', function(e) {
@@ -414,16 +414,6 @@
                 submitBtn.style.display = 'block';
             }
         });
-
-        // ตรวจสอบ Webhook URL
-        if (WEBHOOK_URL === 'https://a20d-184-22-102-215.ngrok-free.app/webhook-test/expense-form') {
-            document.addEventListener('DOMContentLoaded', function() {
-                const warningDiv = document.createElement('div');
-                warningDiv.style.cssText = 'background: #fff3cd; color: #856404; padding: 15px; margin: 20px; border-radius: 10px; border: 1px solid #ffeaa7; text-align: center;';
-                warningDiv.innerHTML = '<strong>⚠️ แจ้งเตือน:</strong> กรุณาแก้ไข WEBHOOK_URL ในโค้ด JavaScript ให้เป็น URL ของ n8n Webhook';
-                document.body.insertBefore(warningDiv, document.body.firstChild);
-            });
-        }
     </script>
 </body>
 </html>
