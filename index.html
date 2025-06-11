@@ -173,6 +173,7 @@
             background: #f8f9fa;
             border-radius: 15px;
             margin: 20px 0;
+            border: 2px solid #4facfe;
         }
 
         .spinner {
@@ -182,85 +183,39 @@
             width: 40px;
             height: 40px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            margin: 0 auto 20px;
         }
 
-        .progress-container {
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .progress-bar {
-            background: #e9ecef;
-            border-radius: 10px;
-            height: 20px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-
-        .progress-fill {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            height: 100%;
-            width: 0%;
-            transition: width 0.8s ease;
-            border-radius: 10px;
-        }
-
-        .progress-text {
+        .processing-message {
+            font-size: 1.2rem;
             font-weight: 600;
             color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
         }
 
-        .progress-step {
-            font-size: 0.9rem;
+        .processing-info {
             color: #666;
-            margin-top: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
 
-        .step-list {
-            text-align: left;
-            margin-top: 15px;
-        }
-
-        .step-item {
-            display: flex;
-            align-items: center;
-            padding: 5px 0;
-            font-size: 0.9rem;
-        }
-
-        .step-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-
-        .step-waiting {
-            background: #e9ecef;
-            color: #6c757d;
-        }
-
-        .step-processing {
-            background: #4facfe;
+        .drive-link {
+            display: inline-block;
+            background: #4285f4;
             color: white;
-            animation: pulse 1.5s infinite;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 10px;
         }
 
-        .step-completed {
-            background: #28a745;
-            color: white;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .drive-link:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
         }
 
         @keyframes spin {
@@ -286,12 +241,6 @@
             border-radius: 10px;
             margin: 20px 0;
             border: 1px solid #f5c6cb;
-        }
-
-        .pdf-link:hover {
-            background: #0056b3 !important;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -411,57 +360,25 @@
 
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <div class="progress-container">
-                    <div class="progress-text">กำลังประมวลผลข้อมูล...</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                    <div class="progress-step" id="progressStep">เริ่มต้นการประมวลผล...</div>
-                    
-                    <div class="step-list">
-                        <div class="step-item">
-                            <div class="step-icon step-waiting" id="step1">1</div>
-                            <span>ตรวจสอบข้อมูล</span>
-                        </div>
-                        <div class="step-item">
-                            <div class="step-icon step-waiting" id="step2">2</div>
-                            <span>จัดการโฟลเดอร์</span>
-                        </div>
-                        <div class="step-item">
-                            <div class="step-icon step-waiting" id="step3">3</div>
-                            <span>อัพโหลดรูปภาพ</span>
-                        </div>
-                        <div class="step-item">
-                            <div class="step-icon step-waiting" id="step4">4</div>
-                            <span>อัพเดต Google Sheets</span>
-                        </div>
-                        <div class="step-item">
-                            <div class="step-icon step-waiting" id="step5">5</div>
-                            <span>สร้างไฟล์ PDF</span>
-                        </div>
-                        <div class="step-item">
-                            <div class="step-icon step-waiting" id="step6">6</div>
-                            <span>บันทึกไฟล์</span>
-                        </div>
-                    </div>
+                <div class="processing-message">🔄 กำลังประมวลผลข้อมูลเบิกจ่าย</div>
+                <div class="processing-info">
+                    กรุณารอสักครู่ประมาณ <strong>1-2 นาที</strong><br>
+                    ระบบกำลังสร้างเอกสารและอัพโหลดไฟล์ลงใน Google Drive
+                </div>
+                <div style="margin-top: 20px;">
+                    <p style="margin-bottom: 10px; color: #333; font-weight: 500;">
+                        📁 ตรวจสอบไฟล์ที่สร้างได้ที่:
+                    </p>
+                    <a href="https://drive.google.com/drive/folders/1GzWpqOwjcBwX5SrloAkaMh1aFfFPGMd5" 
+                       target="_blank" 
+                       class="drive-link">
+                        🗂️ เปิดโฟลเดอร์ Google Drive
+                    </a>
                 </div>
             </div>
 
             <div class="success-message" id="successMessage">
                 <strong>✅ สำเร็จ!</strong> ข้อมูลเบิกจ่ายถูกส่งเรียบร้อยแล้ว
-                <div id="pdfLinkContainer" style="margin-top: 15px; display: none;">
-                    <p style="margin-bottom: 10px;"><strong>📄 ไฟล์ PDF ที่สร้าง:</strong></p>
-                    <a id="pdfLink" href="#" target="_blank" class="pdf-link" style="
-                        display: inline-block;
-                        background: #007bff;
-                        color: white;
-                        padding: 10px 20px;
-                        text-decoration: none;
-                        border-radius: 5px;
-                        font-weight: 500;
-                        transition: all 0.3s ease;
-                    ">🔗 เปิดดู PDF</a>
-                </div>
             </div>
 
             <div class="error-message" id="errorMessage">
@@ -473,82 +390,6 @@
     <script>
         // *** ตั้งค่า Webhook URL ของ n8n ตรงนี้ ***
         const WEBHOOK_URL = 'https://a20d-184-22-102-215.ngrok-free.app/webhook/expense-form';
-        
-        // ขั้นตอนการประมวลผล
-        const processingSteps = [
-            { id: 'step1', text: 'ตรวจสอบข้อมูลฟอร์ม...', progress: 10 },
-            { id: 'step2', text: 'ค้นหาและจัดการโฟลเดอร์...', progress: 25 },
-            { id: 'step3', text: 'อัพโหลดรูปภาพไป Google Drive...', progress: 45 },
-            { id: 'step4', text: 'อัพเดตข้อมูลใน Google Sheets...', progress: 70 },
-            { id: 'step5', text: 'สร้างและส่งออกไฟล์ PDF...', progress: 85 },
-            { id: 'step6', text: 'บันทึกไฟล์และเตรียมลิงก์...', progress: 95 }
-        ];
-
-        // ฟังก์ชันอัพเดต Progress
-        function updateProgress(stepIndex) {
-            const step = processingSteps[stepIndex];
-            const progressFill = document.getElementById('progressFill');
-            const progressStep = document.getElementById('progressStep');
-            const stepIcon = document.getElementById(step.id);
-
-            // อัพเดต progress bar
-            progressFill.style.width = step.progress + '%';
-            progressStep.textContent = step.text;
-
-            // อัพเดตไอคอนขั้นตอน - ขั้นตอนที่ผ่านมาแล้ว
-            for (let i = 0; i < stepIndex; i++) {
-                const prevStep = document.getElementById(processingSteps[i].id);
-                prevStep.className = 'step-icon step-completed';
-                prevStep.innerHTML = '✓';
-            }
-
-            // ขั้นตอนปัจจุบัน
-            stepIcon.className = 'step-icon step-processing';
-            stepIcon.innerHTML = '⟳';
-        }
-
-        // ฟังก์ชันจำลองการประมวลผล
-        function simulateProcessing() {
-            return new Promise((resolve) => {
-                let currentStep = 0;
-
-                function nextStep() {
-                    if (currentStep < processingSteps.length) {
-                        updateProgress(currentStep);
-                        currentStep++;
-                        
-                        // ใช้เวลาสุ่มระหว่าง 1-3 วินาทีต่อขั้นตอน
-                        const delay = Math.random() * 2000 + 1000;
-                        setTimeout(nextStep, delay);
-                    } else {
-                        // ขั้นตอนสุดท้าย - เสร็จสิ้น
-                        const lastStepIcon = document.getElementById('step6');
-                        lastStepIcon.className = 'step-icon step-completed';
-                        lastStepIcon.innerHTML = '✓';
-                        
-                        document.getElementById('progressFill').style.width = '100%';
-                        document.getElementById('progressStep').textContent = 'เสร็จสิ้น! กำลังส่งผลลัพธ์...';
-                        
-                        setTimeout(resolve, 500);
-                    }
-                }
-
-                nextStep();
-            });
-        }
-
-        // ฟังก์ชันรีเซ็ต Progress
-        function resetProgress() {
-            document.getElementById('progressFill').style.width = '0%';
-            document.getElementById('progressStep').textContent = 'เริ่มต้นการประมวลผล...';
-            
-            // รีเซ็ตไอคอนทุกขั้นตอน
-            processingSteps.forEach((step, index) => {
-                const stepIcon = document.getElementById(step.id);
-                stepIcon.className = 'step-icon step-waiting';
-                stepIcon.innerHTML = index + 1;
-            });
-        }
         
         // จัดการการแสดงตัวอย่างไฟล์
         document.getElementById('imageFile').addEventListener('change', function(e) {
@@ -590,66 +431,58 @@
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
-            // ซ่อน PDF link container
-            const pdfLinkContainer = document.getElementById('pdfLinkContainer');
-            if (pdfLinkContainer) {
-                pdfLinkContainer.style.display = 'none';
-            }
-            
-            // รีเซ็ตและแสดง loading
-            resetProgress();
+            // แสดง loading
             submitBtn.style.display = 'none';
             loading.style.display = 'block';
             
             try {
-                // เริ่มจำลองการประมวลผล
-                const simulationPromise = simulateProcessing();
-                
-                // ส่งข้อมูลจริงไป n8n
-                const fetchPromise = fetch(WEBHOOK_URL, {
+                // ส่งข้อมูลไป n8n (แบบ fire-and-forget)
+                fetch(WEBHOOK_URL, {
                     method: 'POST',
                     body: formData
+                }).catch(error => {
+                    console.log('Background process started:', error);
                 });
-
-                // รอให้ทั้งการจำลองและการส่งข้อมูลจริงเสร็จ
-                const [, response] = await Promise.all([simulationPromise, fetchPromise]);
                 
-                if (response.ok) {
-                    const result = await response.json();
-                    
-                    // แสดงข้อความสำเร็จ
+                // แสดงข้อความสำเร็จทันที
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                    successMessage.innerHTML = `
+                        <strong>✅ ส่งข้อมูลเรียบร้อยแล้ว!</strong><br>
+                        <div style="margin-top: 15px; color: #155724; line-height: 1.6;">
+                            📋 ข้อมูลเบิกจ่ายของคุณถูกส่งเข้าระบบแล้ว<br>
+                            ⏱️ ไฟล์ PDF จะพร้อมภายใน <strong>1-2 นาที</strong><br>
+                            📁 ตรวจสอบได้ที่: 
+                            <a href="https://drive.google.com/drive/folders/1GzWpqOwjcBwX5SrloAkaMh1aFfFPGMd5" 
+                               target="_blank" 
+                               style="color: #0066cc; text-decoration: none; font-weight: 600;">
+                               โฟลเดอร์ Google Drive 🔗
+                            </a>
+                        </div>
+                    `;
                     successMessage.style.display = 'block';
-                    
-                    // ตรวจสอบและแสดง PDF URL ถ้ามี
-                    if (result.pdf_url) {
-                        const pdfLinkContainer = document.getElementById('pdfLinkContainer');
-                        const pdfLink = document.getElementById('pdfLink');
-                        
-                        pdfLink.href = result.pdf_url;
-                        pdfLinkContainer.style.display = 'block';
-                        
-                        console.log('PDF URL:', result.pdf_url);
-                    }
                     
                     // รีเซ็ตฟอร์ม
                     form.reset();
                     document.getElementById('filePreview').style.display = 'none';
                     
+                    // แสดงปุ่มกลับ
+                    submitBtn.style.display = 'block';
+                    
                     // เลื่อนไปที่ข้อความสำเร็จ
                     successMessage.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
+                }, 2000); // แสดง loading 2 วินาที
+                
             } catch (error) {
                 console.error('Error:', error);
-                document.getElementById('errorText').textContent = 
-                    error.message || 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้';
-                errorMessage.style.display = 'block';
-                errorMessage.scrollIntoView({ behavior: 'smooth' });
-            } finally {
-                // ซ่อน loading และแสดงปุ่มกลับ
+                
                 loading.style.display = 'none';
                 submitBtn.style.display = 'block';
+                
+                document.getElementById('errorText').textContent = 
+                    'เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง';
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth' });
             }
         });
     </script>
